@@ -1,0 +1,29 @@
+{
+  "name": "sensor-agent",
+  "version": "1.0.0",
+  "description": "Reads locals sensor data and pushes to WasteIQ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wasteiq/sensorAgent.git"
+  },
+  "keywords": [
+    "gpsd",
+    "sensors",
+    "iot",
+    "graphql"
+  ],
+  "author": "Jorgen Tvedt / WasteIQ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wasteiq/sensorAgent/issues"
+  },
+  "homepage": "https://github.com/wasteiq/sensorAgent#readme",
+  "dependencies": {
+    "node-gpsd": "^0.3.0",
+    "rxjs": "^6.5.3"
+  }
+}
