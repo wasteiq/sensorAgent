@@ -28,7 +28,7 @@ interface IProcessedTPV {
 export const gpsdLoop = (stream$: Observable<ITPV>) =>
 	stream$.pipe(
 		filter(x => typeof x.lon === "number"),
-		map(({time, lat, lon}) => ({
+		map(({time, lat, lon}) => (<IProcessedTPV>{
 			timestamp: Date.parse(time),
 			latitude: lat,
 			longitude: lon, 
@@ -41,3 +41,12 @@ export const gpsdLoop = (stream$: Observable<ITPV>) =>
 		filter(({isChange}) => isChange ? true : false),
 		map(({cur}) => cur)
 	)
+
+export const gpsdToStreamedProps = (coordStream$: Observable<IProcessedTPV>) =>
+	coordStream$.pipe(
+		map(({timestamp, latitude, longitude}) => <SensorAgent.IStreamedProps>{
+			property: "decimalDegrees",
+			propertyType: "geoLocation",
+			value: `${latitude},${longitude}`,
+			timestamp,
+		}))
