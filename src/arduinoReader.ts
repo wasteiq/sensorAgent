@@ -2,8 +2,8 @@ import { EventEmitter } from "events";
 import { Observable, fromEvent } from "rxjs";
 import { map } from "rxjs/operators";
 
-const SerialPort = require('serialport');
-const Readline = require('@serialport/parser-readline');
+import SerialPort = require('serialport');
+import Readline = require('@serialport/parser-readline');
 
 const serialPort = new SerialPort(process.env.ARD_SERIAL_PORT || '/dev/ttyACM0', {
 	baudRate: 9600,

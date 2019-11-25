@@ -26,7 +26,8 @@
     "geolib": "^3.1.0",
     "monet": "^0.9.0",
     "node-gpsd": "^0.3.0",
-    "rxjs": "^6.5.3"
+    "rxjs": "^6.5.3",
+    "serialport": "^8.0.5"
   },
   "devDependencies": {
     "@types/chai": "^4.2.5",
