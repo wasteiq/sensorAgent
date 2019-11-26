@@ -1,2 +1,2 @@
 const m = require('./build/src/main').default
-m()
+m(process.argv)

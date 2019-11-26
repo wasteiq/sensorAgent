@@ -1,7 +1,8 @@
 import { connectEvents as connectGpsEvents, gpsdToStreamedProps, gpsdLoop } from "./gpsdLoop"
 import { connectEvents as connectArduinoEvents, arduinoToStreamedEvents } from "./arduinoReader"
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { merge } from "rxjs/operators";
+import { sendStreamedProperty } from "./sendStreamedProperty";
 const gpsd = require('node-gpsd')
 
 // Create a loop that listens for gpsd events, filters using a scan and then converts these to WIQ-push events
@@ -38,13 +39,29 @@ const getStartedWithArduino = () => {
 	return arduinoToStreamedEvents(ard$)
 }
 
-export const main = async () => {
-	const gpsd$ = await getStartedWithGpsd()
-	const ard$ = getStartedWithArduino()
+export const main = async (args) => {
+	const stream$ = await (args[2] === "--mock" ? async () => {
+		const subject$ = new Subject<SensorAgent.IStreamedProps>()
+		setTimeout(() => subject$.next({
+			property: "mock",
+			propertyType: "properties",
+			timestamp: +new Date(),
+			value: Math.round(Math.random() * 100).toString(),
+		}), 1)
+		return subject$
+	} : async () => {
+		const gpsd$ = await getStartedWithGpsd()
+		const ard$ = getStartedWithArduino()
 
-	gpsd$.pipe(
-		merge(ard$)
-	).subscribe(e => console.log(e))
+		return gpsd$.pipe(
+			merge(ard$)
+		)
+	})()
+
+	stream$.subscribe(e => {
+		console.log(e)
+		sendStreamedProperty(e)
+	})
 }
 
 export default main
