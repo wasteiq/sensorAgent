@@ -18,6 +18,9 @@ Reads GPS data, using gpsd, and streams Arduino values from serial line - then t
 
 ```
 ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
+
+Rename and overwrite the file in the `keys` folder with this private key, jwtRS256.key.
+
 # No passphrase!
 openssl rsa -in jwtRS256.key -pubout -outform PEM -out jwtRS256.key.pub
 ```
