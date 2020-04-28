@@ -1,5 +1,12 @@
 # sensorAgent
-Read GPS data, using gpsd, and streams readings on serial line - then transfers all to WasteIQ.
+Reads GPS data, using gpsd, and streams Arduino values from serial line - then transfers all to WasteIQ.
+
+## Hardware
+
+* Raspberry PI or other MicroPC
+* USB based GPS
+* Arduino with accoustic sensor, and the sketch in this project
+* A wifi router (mobile broadband)
 
 
 ## ENV
@@ -11,9 +18,13 @@ Read GPS data, using gpsd, and streams readings on serial line - then transfers 
 
 ```
 ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
+
+Rename and overwrite the file in the `keys` folder with this private key, jwtRS256.key.
+
 # No passphrase!
 openssl rsa -in jwtRS256.key -pubout -outform PEM -out jwtRS256.key.pub
 ```
+Then give the public key to WasteIQ for install in the services.
 
 ## Deployment Framework
 
