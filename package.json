@@ -31,15 +31,15 @@
     "mz": "^2.7.0",
     "node-gpsd": "^0.3.0",
     "rxjs": "^6.5.3",
-    "serialport": "^8.0.5"
+    "serialport": "^8.0.7"
   },
   "devDependencies": {
-    "@types/mz": "^2.7.0",
     "@types/chai": "^4.2.5",
     "@types/mocha": "^5.2.7",
+    "@types/mz": "^2.7.0",
     "@types/node": "^12.12.12",
     "chai": "^4.2.0",
-    "mocha": "^6.2.2",
+    "mocha": "^6.2.3",
     "ts-node": "^8.5.2",
     "typescript": "^3.7.2"
   }
